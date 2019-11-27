@@ -1,0 +1,32 @@
+User
+   UserID(PK)
+   Username
+   Password
+   Image URL
+
+Database
+   DatabaseID(PK)
+   UserID(FK)
+   DatabaseName
+   User For DB
+   Password For User For DB
+   ConnectionURL
+
+Model
+   DatabaseID(PK)
+   ModelID(FK)
+   ModelName
+
+FIeld
+   FieldID(PK)
+   ModelID(FK)
+   FieldName
+   FieldType
+   Constraint
+
+Server
+   ServerID(PK)
+   UserID(FK)
+   DatabaseID(FK) (Unique)
+   Server Port
+   URL(Static Serve)
