@@ -9,12 +9,12 @@ Database
    UserID(FK)
    DatabaseName
    User For DB
-   Password For User For DB
+   Password For User For DB   
    ConnectionURL
 
-Model
-   DatabaseID(PK)
-   ModelID(FK)
+Model 
+   ModelID(PK)
+   DatabaseID(FK)
    ModelName
 
 FIeld
