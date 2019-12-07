@@ -1,4 +1,6 @@
 {
+    "user":"username",
+    "password":"password",
     "dbname":"test",
     "tables":[
         {
