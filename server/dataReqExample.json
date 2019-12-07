@@ -1,0 +1,67 @@
+{
+    "dbname":"test",
+    "tables":[
+        {
+            "tableName":"t1",
+            "tableFields":[
+                {
+                    "fieldName": "c1",
+                    "type":"varchar(200)",
+                    "constraint":"ck1"
+                },
+                {
+                    "fieldName": "c2",
+                    "type":"varchar(200)",
+                    "constraint":"ck2"
+                },
+                {
+                    "fieldName": "c3",
+                    "type":"varchar(200)",
+                    "constraint":"ck3"
+                }
+            ]
+        },
+
+        {
+            "tableName":"t2",
+            "tableFields":[
+                {
+                    "fieldName": "c1",
+                    "type":"varchar(200)",
+                    "constraint":"ck2"
+                },
+                {
+                    "fieldName": "c2",
+                    "type":"varchar(200)",
+                    "constraint":"ck2"
+                },
+                {
+                    "fieldName": "c3",
+                    "type":"varchar(200)",
+                    "constraint":"ck3"
+                }
+            ]
+        },
+
+        {
+            "tableName":"t3",
+            "tableFields":[
+                {
+                    "fieldName": "c1",
+                    "type":"varchar(200)",
+                    "constraint":"ck1"
+                },
+                {
+                    "fieldName": "c2",
+                    "type":"varchar(200)",
+                    "constraint":"ck2"
+                },
+                {
+                    "fieldName": "c3",
+                    "type":"varchar(200)",
+                    "constraint":"ck3"
+                }
+            ]
+        }
+    ]
+}
