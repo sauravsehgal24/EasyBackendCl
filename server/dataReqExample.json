@@ -42,7 +42,8 @@
                     "type":"varchar(200)",
                     "constraint":"ck3"
                 }
-            ]
+            ],
+            "externalConstraint":"FOREIGN KEY(c2) REFERENCES t1(c1)"
         },
 
         {

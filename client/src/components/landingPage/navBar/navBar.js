@@ -17,7 +17,8 @@ class NavBar extends Component {
     render() {
         return (
             <React.Fragment>
-                 <Grid container spacing={3}>
+                <h1 style={{fontFamily:'Poppins'}}>This is NavBar</h1>
+                 {/* <Grid container spacing={3}>
                      <Grid item xs={6}>
                         <AppBar position="static">
                             <Toolbar>
@@ -55,7 +56,7 @@ class NavBar extends Component {
                             </defs>
                         </svg>
                      </Grid>
-                </Grid>
+                </Grid> */}
 </React.Fragment>
         ); 
     }

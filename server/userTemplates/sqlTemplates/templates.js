@@ -4,20 +4,20 @@ module.exports = {
 
     createWhole:`
 
-    CREATE USER "username" IDENTIFIED BY "password";
+CREATE USER "username" IDENTIFIED BY "password";
     
-    CREATE dbname
+CREATE DATABASE dbname
 
-    GRANT ALL ON dbname.* to username;
+GRANT ALL ON dbname.* to username;
 
-    FLUSH PRIVILEGES;
+FLUSH PRIVILEGES;
 
-    USE dbname
+USE dbname
     `,
 
     createUser:`CREATE USER "username" IDENTIFIED BY "password";\n`,
 
-    createDatabase:`CREATE dbname\n`,
+    createDatabase:`CREATE DATABASE dbname\n`,
 
     grantPrivileges:`GRANT ALL ON dbname.* to username; \nFLUSH PRIVILEGES;\n`,
 

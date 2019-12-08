@@ -1,20 +1,5 @@
 var sqlTemplates = require('./templates');
 
-// var fields = [
-//     {
-//         fieldName:"id",
-//         fieldType:"varchar(200)"
-//     },
-//     {
-//         fieldName:"name",
-//         fieldType:"varchar(200)"
-//     },
-//     {
-//         fieldName:"email",
-//         fieldType:"varchar(200)"
-//     }
-// ];
-
 class SqlGenerator {
 
     //replaces the default creds with new ones
@@ -31,25 +16,38 @@ class SqlGenerator {
     }
 
     //creates a Create Table SQL Command via recursion
-    static createTableSqlCommand(index,fieldsArray,outputTest){
+    static createTableSqlCommand(index,tableName,fieldsArray,outputTest){
 
         if(index < fieldsArray.length){
             if(!outputTest){
-                prevCmd = `CREATE TABLE test(`;
+                let prevCmd = `CREATE TABLE ${tableName}(`;
                 outputTest= prevCmd;
-                return createTableSqlCommand(index,fieldsArray,outputTest);
+                return this.createTableSqlCommand(index,tableName,fieldsArray,outputTest);
             }
             else{
-                outputTest+=` ${fieldsArray[index].fieldName} ${fieldsArray[index].fieldType}${index==fieldsArray.length-1 ? '':','}`;
+                outputTest+=` ${fieldsArray[index].fieldName} ${fieldsArray[index].fieldType} ${fieldsArray[index].constraint ? fieldsArray[index].constraint:''}${index==fieldsArray.length-1 ? '':','}`;
                 index++;
                 
-                return createTableSqlCommand(index,fieldsArray,outputTest);
+                return this.createTableSqlCommand(index,tableName,fieldsArray,outputTest);
             }
         }
         else{
-           return `${outputTest});`;
+           return `${outputTest}`;
         }
     
+    }
+
+    static generateSqlFileTemplate(creds,metadata){
+
+
+        let credsOutput =  this.createWholeSqlCredsAndDb(creds);
+        var tablesOutput=``;
+        metadata.forEach(e=>{
+            tablesOutput += `${this.createTableSqlCommand(0,e.tableName,e.tableFields,null)} ${e.externalConstraint ? ', '+e.externalConstraint+');' : ');'} \n\n`;
+        });
+
+        return `${credsOutput} \n${tablesOutput}`
+
     }
 
 }
