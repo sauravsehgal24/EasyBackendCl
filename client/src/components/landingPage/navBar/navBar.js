@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import AppBar from '@material-ui/core/AppBar';
@@ -8,16 +7,55 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import { makeStyles } from '@material-ui/core/styles';
 
-class NavBar extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {  };
-    }
-    render() {
+
+const useStyles = makeStyles(theme => ({
+    root: {
+      flexGrow: 1,
+    },
+    menuButton: {
+      marginRight: theme.spacing(2),
+    },
+    title: {
+      flexGrow: 1,
+    },
+    toolbar: {
+        backgroundColor:"#83cc7c",
+        display: 'flex',
+        flexDirection: "row",
+        justifyContent:"flex-end",
+      },
+      button: {
+        textTransform: "capitalize",
+        marginRight:"2%",
+        fontFamily:"Poppins",
+      },
+      buttonFuture: {
+        textTransform: "capitalize",
+        marginRight:"2%",
+        fontFamily:"Poppins",
+        backgroundColor:"#dce6de",
+      },
+  }));
+
+  export default function NavBar() {
+
+    const classes = useStyles();
+
         return (
             <React.Fragment>
-                <h1 style={{fontFamily:'Poppins'}}>This is NavBar</h1>
+                <div className={classes.root}>
+                <AppBar position="static">
+                <Toolbar className={classes.toolbar}>
+                    <Button size="large" className={classes.button} color="inherit">Home</Button>
+                    <Button size="large" className={classes.button} color="inherit">Developer</Button>
+                    <Button size="large" className={classes.button} color="inherit">Usage</Button>
+                    <Button size="large" className={classes.button} color="inherit">About</Button>
+                    <Button variant='contained' size="large" className={classes.buttonFuture} >Features To Come.....</Button>
+                </Toolbar>
+                </AppBar>
+                </div>
                  {/* <Grid container spacing={3}>
                      <Grid item xs={6}>
                         <AppBar position="static">
@@ -59,7 +97,6 @@ class NavBar extends Component {
                 </Grid> */}
 </React.Fragment>
         ); 
-    }
+    
 }
 
-export default NavBar;
