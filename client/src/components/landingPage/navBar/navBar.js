@@ -29,12 +29,10 @@ const useStyles = makeStyles(theme => ({
       button: {
         textTransform: "capitalize",
         marginRight:"2%",
-        fontFamily:"Poppins",
       },
       buttonFuture: {
         textTransform: "capitalize",
         marginRight:"2%",
-        fontFamily:"Poppins",
         backgroundColor:"#dce6de",
       },
   }));
