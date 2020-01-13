@@ -65,8 +65,10 @@ const useStyles = makeStyles(theme => ({
                         <CardActions className={classes.loginButtonFlex}>
                                 <Button className={classes.button} size="large" variant="contained">SignUp</Button>
                         </CardActions>
-
+                        
                         </Grid>
+
+                        
 
 
                     </Grid> 

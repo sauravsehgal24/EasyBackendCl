@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
        
         display:'flex',
         flexDirection:"row",
-        justifyContent:"flex-end",
+        justifyContent:"flex-end" ,
       
       }
       
@@ -28,7 +28,7 @@ export default function HomePage() {
         return (
             <React.Fragment>
                 <Grid className={classes.grid} container >
-                    <Grid item s={12} xs={12} md={6} lg={6}>
+                    <Grid item sm={12} xs={12} md={6} lg={6}>
                         <Typography>EasyBackEndCL</Typography>
                     </Grid>
                     <Grid className={classes.item}  item s={12} xs={12} md={6} lg={6}>
