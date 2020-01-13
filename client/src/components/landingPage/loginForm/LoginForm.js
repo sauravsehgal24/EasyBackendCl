@@ -13,10 +13,19 @@ const useStyles = makeStyles(theme => ({
     card: {
         width: '65%',
         height: '100%',
+        boxShadow:'9px 9px 20px rgba(0, 0, 0, 0.25), -12px -12px 30px #EDFFF0',
       },
    button:{
        backgroundColor:'#e6ebe7',
        width:'95%',
+       boxShadow:'3px 3px 10px rgba(0, 0, 0, 0.25)',
+       textTransform: "capitalize",
+   },
+   buttonLogin:{
+    backgroundColor:'#d3ede0',
+    textTransform: "capitalize",
+    width:'95%',
+    boxShadow:'3px 3px 10px rgba(0, 0, 0, 0.25)',
    },
    loginButtonFlex:{
     display:'flex',
@@ -64,6 +73,8 @@ const useStyles = makeStyles(theme => ({
 
                         <CardActions className={classes.loginButtonFlex}>
                                 <Button className={classes.button} size="large" variant="contained">SignUp</Button>
+                                <Typography style={{margin:'2%'}} variant='body'>OR</Typography>
+                                <Button className={classes.buttonLogin} size="large" variant="contained">Already SignedUp</Button>'
                         </CardActions>
                         
                         </Grid>
