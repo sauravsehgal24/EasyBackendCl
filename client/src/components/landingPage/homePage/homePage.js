@@ -3,7 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import LoginForm from '../loginForm/LoginForm';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-
+import DisplayInfo from '../displayInfo/displayInfo';
 
 const useStyles = makeStyles(theme => ({
     grid: {
@@ -29,7 +29,7 @@ export default function HomePage() {
             <React.Fragment>
                 <Grid className={classes.grid} container >
                     <Grid item sm={12} xs={12} md={6} lg={6}>
-                        <Typography>EasyBackEndCL</Typography>
+                        <DisplayInfo />
                     </Grid>
                     <Grid className={classes.item}  item s={12} xs={12} md={6} lg={6}>
                         <LoginForm />
