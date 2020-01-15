@@ -14,8 +14,12 @@ EasyBackendCl is a cloud service(technically it is just a server but in future i
 - You will also be given database creds (for local testing purposes)
 - For updating the server, navigate to dashboard->your app->upload project and upload your updated Node Project
 
-
-
+# Developer Usage
+- Clone the project in local machine
+- Navigate to EasyBackendCl->client and type `"npm install"` in the terminal and press enter
+- Navigate to EasyBackendCl->server and type `"npm install"` in the terminal and press enter
+- For running the dev server, navigate to EasyBackendCl->server and type `"npm run dev"` in the terminal and press enter
+- Your dev server is up and running for testing and debugging purposes
 
 
 
