@@ -1,10 +1,12 @@
 # EasyBackendCl
 
-# About
+## About
 EasyBackendCl is a cloud service(technically it is just a server but in future it will be highly available service). With the help of this service a user can create a NodeJS production server (REST API to be precise) alongside a remote production database and can make API calls directly to this production server.
 
-# Usage (Note: Some of the features still needs to be developed, so please be patient)
-- Create an account on EasyBackendCl
+## Usage 
+#### (Note: Some of the features still needs to be developed, so please be patient)
+
+- Visit [EasyBackendCl](http://easybackendcl.ga) and create an account on EasyBackendCl
 - Update your profile (optional)
 - Go to dashboard
 - Click on create app button
@@ -14,7 +16,9 @@ EasyBackendCl is a cloud service(technically it is just a server but in future i
 - You will also be given database creds (for local testing purposes)
 - For updating the server, navigate to dashboard->your app->upload project and upload your updated Node Project
 
-# Developer Usage (Note: This project is only compatible with linux OS, if you try to run it on any other OS it will not work)
+## Developer Usage 
+#### (Note: This project is only compatible with linux OS, if you try to run it on any other OS it will not work)
+
 - Clone the project in local machine
 - Navigate to EasyBackendCl->client and type `"npm install"` in the terminal and press enter
 - Navigate to EasyBackendCl->server and type `"npm install"` in the terminal and press enter
