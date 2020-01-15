@@ -9,7 +9,7 @@ EasyBackendCl is a cloud service(technically it is just a server but in future i
 - Visit [EasyBackendCl](http://easybackendcl.ga) and create an account 
 - Update your profile (optional)
 - Go to dashboard
-- Click on create app button
+- Click on create app button 
 - Create your application
 - Once the app is created, you will be able to see you app in dashboard
 - You will be provided with a link from which you can connect to your server and remote database 
