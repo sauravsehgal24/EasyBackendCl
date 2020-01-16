@@ -14,6 +14,7 @@ export default function NavBar() {
   return (
     <React.Fragment>
       <Navbar className="navBar" expand="lg">
+      <Link onClick={()=> setNavHeadingFunc('Home')} to="/">
         <Navbar.Brand style={{ marginLeft: "1%" }}>
           <img
             src={require("../../../assets/images/gear.gif")}
@@ -23,6 +24,7 @@ export default function NavBar() {
             alt="React Bootstrap logo"
           />
         </Navbar.Brand>
+        </Link>
         <h4> | {navHeading}</h4>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
