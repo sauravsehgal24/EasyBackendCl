@@ -25,6 +25,7 @@
 .usernameTextfield{
     width:100%;
     height:50px;
+    cursor: not-allowed;;
 }
 
 .passwordTextfield{

@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Card, Button, Form, InputGroup } from "react-bootstrap";
-import './loginForm.css'
+import './signUpForm.css'
 
-export default function LoginForm() {
+export default function SignUpForm() {
   return (
     <React.Fragment>
       <Card className='card'>
