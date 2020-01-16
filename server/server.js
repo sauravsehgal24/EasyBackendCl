@@ -1,10 +1,11 @@
 const express = require('express')
 const app = express()
-const port = 3001
+const port = 3000
 require('dotenv').config();
 var path = require('path');
 var fs = require('fs');
 var SqlGenerator = require('./userTemplates/sqlTemplates/sqlCmdGenerator');
+
 
 //just testing if the sql template is generated -> it works
 let sqlFileTemplate = SqlGenerator.generateSqlFileTemplate({dbUser:'saurav',dbPassword:'saurav123456',dbName:'test'},
@@ -86,6 +87,6 @@ fs.writeFile('./userTemplates/newSchema.sql', sqlFileTemplate, 'utf8', function 
 
 
 
-app.get('/', (req, res) => res.send('Hello World!'))
+app.get('/', (req, res) => res.send(`EasyBackend says hi! on port: ${port}`))
 
-app.listen(port, () => console.log(`Easy BackEnd Server listening on port ${port}!`))
+app.listen(port, () => console.log(`EasyBackend Server listening on port ${port}!`))

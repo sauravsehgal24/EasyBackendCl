@@ -6,13 +6,13 @@ module.exports = {
 
 CREATE USER "username" IDENTIFIED BY "password";
     
-CREATE DATABASE dbname
+CREATE DATABASE dbname;
 
 GRANT ALL ON dbname.* to username;
 
 FLUSH PRIVILEGES;
 
-USE dbname
+USE dbname;
     `,
 
     createUser:`CREATE USER "username" IDENTIFIED BY "password";\n`,
