@@ -1,64 +1,60 @@
-import React, {Component} from 'react';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import { makeStyles } from '@material-ui/core/styles';
+import React, { Component, useState, setState } from "react";
+import { Navbar, Nav } from "react-bootstrap";
+import { Route, Link, BrowserRouter as Router } from "react-router-dom";
+import "./navBar.css";
 
+export default function NavBar() {
 
-const useStyles = makeStyles(theme => ({
-    root: {
-      flexGrow: 1,
-    },
-    menuButton: {
-      marginRight: theme.spacing(2),
-    },
-    title: {
-      flexGrow: 1,
-    },
-    toolbar: {
-        backgroundColor:"#83cc7c",
-        display: 'flex',
-        flexDirection: "row",
-        justifyContent:"flex-end",
-      },
-      button: {
-        textTransform: "capitalize",
-        marginRight:"2%",
-        fontSize:'18px',
-      },
-      buttonFuture: {
-        textTransform: "capitalize",
-        marginRight:"2%",
-        backgroundColor:"#dce6de",
-        fontSize:'18px',
-      },
-  }));
+  const [navHeading, setNavHeading] = useState('Home');
 
-  export default function NavBar() {
+  const setNavHeadingFunc = function (name){
+    setNavHeading(name);
+  }
 
-    const classes = useStyles();
-
-        return (
-            <React.Fragment>
-                <div className={classes.root}>
-                <AppBar position="static">
-                <Toolbar className={classes.toolbar}>
-                    <Button size="large" className={classes.button} color="inherit">Home</Button>
-                    <Button size="large" className={classes.button} color="inherit">Developer</Button>
-                    <Button size="large" className={classes.button} color="inherit">Usage</Button>
-                    <Button size="large" className={classes.button} color="inherit">About</Button>
-                    <Button variant='contained' size="large" className={classes.buttonFuture} >Features To Come.....</Button>
-                </Toolbar>
-                </AppBar>
-                </div>
-                 
-            </React.Fragment>
-        ); 
-    
+  return (
+    <React.Fragment>
+      <Navbar className="navBar" expand="lg">
+        <Navbar.Brand style={{ marginLeft: "1%" }}>
+          <img
+            src={require("../../../assets/images/gear.gif")}
+            width="70"
+            height="70"
+            className="d-inline-block align-top"
+            alt="React Bootstrap logo"
+          />
+        </Navbar.Brand>
+        <h4> | {navHeading}</h4>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="ml-auto">
+            <Nav.Link className="mr-5 fontSize"  >
+              <Link onClick={()=> setNavHeadingFunc('Home')} style={{ color: "black" }} to="/">
+                Home
+              </Link>
+            </Nav.Link>
+            <Nav.Link className="mr-5 fontSize" >
+              <Link onClick={()=> setNavHeadingFunc('Developer')}  style={{ color: "black" }} to="/developer">
+                Developer
+              </Link>
+            </Nav.Link>
+            <Nav.Link className="mr-5 fontSize" >
+              <Link onClick={()=> setNavHeadingFunc('Usage')}  style={{ color: "black" }} to="/usage">
+                Usage
+              </Link>
+            </Nav.Link>
+            <Nav.Link className="mr-5 fontSize"  >
+              <Link onClick={()=> setNavHeadingFunc('About')} style={{ color: "black" }} to="/about">
+                About
+              </Link>
+            </Nav.Link>
+            <Nav.Link className="mr-5 fontSize" >
+              <Link onClick={()=> setNavHeadingFunc('UpComing')} style={{ color: "black" }} to="/upComing">
+                UpComing
+              </Link>
+            </Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
+    </React.Fragment>
+  );
 }
-

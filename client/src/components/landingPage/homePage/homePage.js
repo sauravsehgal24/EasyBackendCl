@@ -1,41 +1,23 @@
-import React, {Component} from 'react';
-import Grid from '@material-ui/core/Grid';
-import LoginForm from '../loginForm/LoginForm';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import DisplayInfo from '../displayInfo/displayInfo';
-
-const useStyles = makeStyles(theme => ({
-    grid: {
-       padding:'5%',
-       height:'90vh',
-      },
-      item:{
-       
-        display:'flex',
-        flexDirection:"row",
-        justifyContent:"flex-end" ,
-      
-      }
-      
-   
-  }));
+import React, { Component } from "react";
+import { Container, Row, Col } from "react-bootstrap";
+import LoginForm from "./loginForm/loginForm";
+import './homePage.css';
+import DisplayInfo from "./displayInfo/displayInfo";
 
 export default function HomePage() {
- 
-       const classes = useStyles();
+  return (
+    <React.Fragment>
+      <Container fluid>
+        <Row>
+          <Col xl={6} l={6} md={6} sm={12} xs={12} className='colOne'>
+            <DisplayInfo />
+          </Col>
 
-        return (
-            <React.Fragment>
-                <Grid className={classes.grid} container >
-                    <Grid item sm={12} xs={12} md={6} lg={6}>
-                        <DisplayInfo />
-                    </Grid>
-                    <Grid className={classes.item}  item s={12} xs={12} md={6} lg={6}>
-                        <LoginForm />
-                    </Grid>
-                </Grid>
-            </React.Fragment>
-        );
+          <Col xl={6} l={6} md={6} sm={12} xs={12} className='colTwo'>
+            <LoginForm />
+          </Col>
+        </Row>
+      </Container>
+    </React.Fragment>
+  );
 }
-

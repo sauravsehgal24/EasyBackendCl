@@ -1,0 +1,14 @@
+.colOne{
+    height:89vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  
+}
+
+.colTwo{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height:89vh;
+}
