@@ -7,8 +7,7 @@ export default function DisplayInfo() {
         <h1 className="header">
           EasyBackendCl
           <img
-            width="200"
-            height="80"
+            className='displayInfoImg'
             src={require("../../../../assets/images/gears.png")}
           />
         </h1>

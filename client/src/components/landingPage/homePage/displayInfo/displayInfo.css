@@ -3,9 +3,13 @@
 }
 
 .header{
-    font-size: 70px;
+    font-size: 4vmax;
 }
 
 .text{
-    font-size: 24px;
+    font-size: 1.5vmax;
+}
+.displayInfoImg{
+    height:6vmax;
+    width:14vmax;
 }
