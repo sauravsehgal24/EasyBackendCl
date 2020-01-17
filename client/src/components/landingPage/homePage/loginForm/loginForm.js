@@ -2,11 +2,6 @@ import React, { Component } from "react";
 import {
   Modal,
   Button,
-  Container,
-  Row,
-  Col,
-  InputGroup,
-  FormControl,
   Form
 } from "react-bootstrap";
 
