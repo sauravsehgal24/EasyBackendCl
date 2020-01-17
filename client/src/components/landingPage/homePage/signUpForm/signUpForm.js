@@ -1,8 +1,20 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import { Card, Button, Form, InputGroup } from "react-bootstrap";
 import './signUpForm.css'
+import LoginForm from '../loginForm/loginForm';
 
 export default function SignUpForm() {
+
+  const [loginDialogue, setLoginDialogueOpen] = useState(false);
+
+  const hideDialogue = ()=>{
+    setLoginDialogueOpen(false);
+  }
+
+  const showDialogue = ()=>{
+    setLoginDialogueOpen(true);
+  }
+
   return (
     <React.Fragment>
       <Card className='card'>
@@ -26,9 +38,10 @@ export default function SignUpForm() {
 
           <Button className='signUpButton' variant="primary">Sign Up</Button>
           <hr className='divider' />
-          <Button className='loginButton' variant="success">Login</Button>
+          <Button className='loginButton' variant="success" onClick={()=>showDialogue()}>Login</Button>
         </Card.Body>
       </Card>
+      <LoginForm show={loginDialogue} onHide={hideDialogue}  />
     </React.Fragment>
   );
 }

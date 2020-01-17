@@ -19,23 +19,23 @@
     align-items: center;
 }
 .developersCardPara{
-    font-size: 160%;
+    font-size: 1.4vmax;
     margin-top:2%;
 }
 .myProfilePic{
-    height:40%;
+    height:13vw;
     width:18%;
     box-shadow: 10px 10px 20px rgba(38, 38, 38, 0.2), -15px -15px 20px rgba(227, 238, 225, 0.3);
 }
 .githubPic{
-    height:50%;
-    width:3%;
-    margin-left:2%;
+    height:30px;
+    width:30px;
+    
 }
 .linkindnPic{
-    height:68%;
-    width:4.6%; 
-    margin-left:2%;
+    height:44px;
+    width:44px; 
+    
 }
 .contactImagesContainer{
     display: flex;
@@ -44,4 +44,15 @@
     align-items: center;
     height:100%;
     width:100%;
+}
+
+.linkindnPicA{
+    width:10%;
+    display: flex;
+    justify-content: center;
+}
+.githubPicA{
+    width:10%;
+    display: flex;
+    justify-content: center;
 }

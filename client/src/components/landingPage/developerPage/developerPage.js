@@ -25,15 +25,15 @@ export default function DeveloperPage() {
               provided down below.
             </div>
             <div className="contactImagesContainer">
-                <a href='https://github.com/sauravsehgal24'>
+                <a className='githubPicA' href='https://github.com/sauravsehgal24' target="_blank">
               <img
                 src={require("../../../assets/images/github.png")}
-                className="githubPic"
+                className='githubPic'
               /></a>
-              <a href='http://www.linkedin.com/in/saurav-sehgal'>
+              <a className='linkindnPicA' href='http://www.linkedin.com/in/saurav-sehgal' target="_blank">
               <img
                 src={require("../../../assets/images/linkindn.png")}
-                className="linkindnPic"
+                className='linkindnPic'
               /></a>
             </div>
           </Card.Body>
