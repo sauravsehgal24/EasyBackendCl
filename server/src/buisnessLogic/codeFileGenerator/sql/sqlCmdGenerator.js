@@ -1,4 +1,4 @@
-var sqlTemplates = require('./templates');
+var sqlTemplates = require('../../../templates/sqlTemplates');
 
 class SqlGenerator {
 
