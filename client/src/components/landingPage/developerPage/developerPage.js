@@ -19,7 +19,7 @@ export default function DeveloperPage() {
               Developer like most of you out there. I am a recent graduate from
               Sheridan College (Brampton, ON, CA) and this is my first open
               source and big project after my studies. After some research and
-              binge watching the documentation for react, I came up with this
+              going through the documentation for react, I came up with this
               project. Currently developing some of the major features and being
               an open source project, you can also contribute via my Github link
               provided down below.

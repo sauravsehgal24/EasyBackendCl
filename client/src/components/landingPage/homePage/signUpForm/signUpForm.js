@@ -1,12 +1,16 @@
 import React, { Component, useState } from "react";
 import { Card, Button, Form, InputGroup } from "react-bootstrap";
+import {useDispatch} from 'react-redux';
+import userActions from '../../../../global/actions/userActions';
 import './signUpForm.css'
 import LoginForm from '../loginForm/loginForm';
-import customState, { useCustomState } from './customStateHook';
+import customState, { useCustomState } from '../../../hooks/customStateHook';
 import axios from 'axios';
 
 export default function SignUpForm(props) {
 
+  //dispatch
+  const dispatch = useDispatch();
   
   //state
   const {value:loginDialogue, setValue:setLoginDialogueOpen} = useCustomState(false);
@@ -26,22 +30,34 @@ export default function SignUpForm(props) {
 
   const signUp = ()=>{
     const payload = {
+      token:'tokendsc',
+      userId:'dsac',
       username: email,
       email: email,
-      password: password,
     }
     resetEmail();
     resetPassword();
 
-    axios.post('http://localhost:3001/api/user', payload)
-    .then(function (response) {
-      console.log(response);
-      props.history.push('/user')
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-    
+    // axios.post('http://localhost:3001/api/user', payload)
+    // .then(function (response) {
+
+    //   const {token} = response.data;
+    //   const {userId,username, email} = response.data.user[0];
+    //   const payload = {
+    //     token,
+    //     userId,
+    //     username,
+    //     email,
+    //   };
+    //  //dispatch(userActions._signUp(payload));
+      
+    // })
+    // .catch(function (error) {
+    //   console.log(error);
+    // });
+
+    dispatch(userActions._signUp(payload));
+    props.history.push('/user');
   }
 
   return (
@@ -70,7 +86,7 @@ export default function SignUpForm(props) {
           <Button className='loginButton' variant="success" onClick={()=>showDialogue()}>Login</Button>
         </Card.Body>
       </Card>
-      <LoginForm show={loginDialogue} onHide={hideDialogue}  />
+      <LoginForm {...props} show={loginDialogue} onHide={hideDialogue}  />
     </React.Fragment>
   );
 }

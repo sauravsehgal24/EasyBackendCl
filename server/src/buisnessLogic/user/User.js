@@ -56,10 +56,33 @@ class User {
       .catch((err) => {
         throw err;
       });
-
-
-
   }
+
+  static authenticateLogin(email,password){
+
+    return Promise.using(
+      getSqlConnection(),
+      conn=>conn.query(Query.findUserByEmail, [email])
+    )
+    .then((resultUser)=>{
+      if(!resultUser || resultUser.length === 0) return response.Unauthorized;
+
+      const passwordFromDb = resultUser[0].password;
+
+         return bcrypt.compare(password, passwordFromDb)
+        .then((result)=>{
+          console.log(`is password correct: ${result}`);
+          if(!result) return response.Unauthorized;
+          return resultUser[0];
+        })
+        
+    })
+    .catch((err)=>{
+      throw err;
+    })
+  
+  }
+
 
 }
 
