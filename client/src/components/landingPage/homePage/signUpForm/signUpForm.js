@@ -3,8 +3,9 @@ import { Card, Button, Form, InputGroup } from "react-bootstrap";
 import './signUpForm.css'
 import LoginForm from '../loginForm/loginForm';
 import customState, { useCustomState } from './customStateHook';
+import axios from 'axios';
 
-export default function SignUpForm() {
+export default function SignUpForm(props) {
 
   
   //state
@@ -13,39 +14,33 @@ export default function SignUpForm() {
   const {value:password, setValue:setPassword, bind:bindPassword, reset:resetPassword} = useCustomState('');
 
   const hideDialogue = ()=>{
+    
     setLoginDialogueOpen(false);
   }
 
   const showDialogue = ()=>{
+    console.log(props);
     setLoginDialogueOpen(true);
   }
+
 
   const signUp = ()=>{
     const payload = {
       username: email,
       email: email,
-      password: password
+      password: password,
     }
     resetEmail();
     resetPassword();
 
-    console.log(payload);
-
-    // const object = {
-    //   email:'emailRef',
-    //   userName:'userNameRef',
-    // }
-
-    // console.log(`Before: email: ${object.email} password: ${object.userName}\n`);
-
-    // const newObj = {
-    //   email:'testMail',
-    // }
-
-    // const key = Object.keys(newObj)[0];
-    // object[key] = newObj[key];
-
-    // console.log(`After: email: ${object.email} password: ${object.userName}`);
+    axios.post('http://localhost:3001/api/user', payload)
+    .then(function (response) {
+      console.log(response);
+      props.history.push('/user')
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
     
   }
 
