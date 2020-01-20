@@ -13,7 +13,7 @@ export default function NavBar() {
 
   return (
     <React.Fragment>
-      <Navbar className="navBar" expand="lg">
+      <Navbar  className="navBar" expand="lg" >
       <Link onClick={()=> setNavHeadingFunc('Home')} to="/">
         <Navbar.Brand style={{ marginLeft: "1%" }}>
           <img
