@@ -2,10 +2,10 @@ const express = require('express')
 const app = express()
 const port = 3001
 require('dotenv').config();
-var path = require('path');
 var fs = require('fs');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const path = require('path');
 var SqlGenerator = require('./src/buisnessLogic/codeFileGenerator/sql/sqlCmdGenerator');
 
 
@@ -13,15 +13,14 @@ var SqlGenerator = require('./src/buisnessLogic/codeFileGenerator/sql/sqlCmdGene
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
+
 /* ----- routes ----- */
 const api = require('./src/api/rootRouter');
-
 app.use(`/api`, api);
 
-
-
-
-
+/* ----- Static Routes ----- */
+const uploadsServe = express.static(path.resolve(__dirname, 'uploads'));
+app.use('/uploads', uploadsServe);
 
 app.get('/', (req, res) => res.send(`EasyBackendCl says hi! on port: ${port}`))
 

@@ -4,10 +4,12 @@ import { useCustomState } from "../../../hooks/customStateHook";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import userActions from "../../../../global/actions/userActions";
-
+import './loginForm.css';
 import { Route, Link, BrowserRouter as Router, Switch } from "react-router-dom";
 
 export default function LoginForm(props) {
+
+
   //dispatch
   const dispatch = useDispatch();
 
@@ -15,24 +17,34 @@ export default function LoginForm(props) {
   const {
     value: email,
     setValue: setEmail,
+    validateResult:validateEmailValue,
     bind: bindEmail,
     reset: resetEmail
-  } = useCustomState("");
+  } = useCustomState("",'email');
+
   const {
     value: password,
     setValue: setPassword,
+    validateResult:validatePasswordValue,
     bind: bindPassword,
     reset: resetPassword
-  } = useCustomState("");
+  } = useCustomState("",'password');
 
+  //login api call to auth
   const login = () => {
+
+    if(validateEmailValue !== '' || validatePasswordValue !== '') return;
+
     const payload = {
       email,
       password
     };
 
+    const BASE_URL_DEV = 'http://localhost:3001';
+    const BASE_URL_PROD = 'http://72.140.223.48:3001';
+
     axios
-      .post("http://localhost:3001/api/user/auth", payload)
+      .post(`${BASE_URL_DEV}/api/user/auth`, payload)
       .then(res => {
         if (res === "Unauthorized") {
           console.log("unauthorize");
@@ -40,12 +52,13 @@ export default function LoginForm(props) {
         }
         
         const { token } = res.data;
-        const { userId, username, email } = res.data.user;
+        const { userId, username, email , avatarUrl} = res.data.user;
         const payload = {
           token,
           userId,
           username,
-          email
+          email,
+          avatarUrl,
         };
 
         console.log(payload);
@@ -81,8 +94,8 @@ export default function LoginForm(props) {
               type="text"
               {...bindEmail}
             />
-            <Form.Text className="text-muted"></Form.Text>
           </InputGroup>
+          <span className="validationTextLogin">{validateEmailValue}</span>
 
           <InputGroup className="loginFormPasswordTextfield mt-3">
             <InputGroup.Prepend>
@@ -94,8 +107,8 @@ export default function LoginForm(props) {
               type="password"
               {...bindPassword}
             />
-            <Form.Text className="text-muted"></Form.Text>
           </InputGroup>
+          <span className="validationTextLogin">{validatePasswordValue}</span>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="success" onClick={() => login()}>

@@ -9,12 +9,10 @@ import './sideBar.css';
 
 const useStyles = makeStyles(theme => ({
     large: {
-      width: theme.spacing(12),
-      height: theme.spacing(12),
+      width: theme.spacing(14),
+      height: theme.spacing(14),
     },
   }));
-
-
 
 export default function SideBar(props) {
 
