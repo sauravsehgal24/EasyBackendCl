@@ -6,19 +6,21 @@ import './signUpForm.css'
 import LoginForm from '../loginForm/loginForm';
 import customState, { useCustomState } from '../../../hooks/customStateHook';
 import axios from 'axios';
+import { useEffect } from "react";
 
 export default function SignUpForm(props) {
+
+  
 
   //dispatch
   const dispatch = useDispatch();
   
   //state
   const {value:loginDialogue, setValue:setLoginDialogueOpen} = useCustomState(false);
-  const {value:email, setValue:setEmail, bind:bindEmail, reset:resetEmail} = useCustomState('');
-  const {value:password, setValue:setPassword, bind:bindPassword, reset:resetPassword} = useCustomState('');
+  const {value:email, setValue:setEmail,validateResult:validateEmailMessage ,bind:bindEmail, reset:resetEmail} = useCustomState('','email');
+  const {value:password, setValue:setPassword, validateResult:validatePasswordMessage, bind:bindPassword, reset:resetPassword} = useCustomState('','password');
 
   const hideDialogue = ()=>{
-    
     setLoginDialogueOpen(false);
   }
 
@@ -27,37 +29,42 @@ export default function SignUpForm(props) {
     setLoginDialogueOpen(true);
   }
 
-
+//signUp api call
   const signUp = ()=>{
-    const payload = {
-      token:'tokendsc',
-      userId:'dsac',
+
+    if(validateEmailMessage !== '' || validatePasswordMessage !== '') return;
+
+    const data = {
       username: email,
       email: email,
+      password: password,
     }
+
     resetEmail();
     resetPassword();
 
-    // axios.post('http://localhost:3001/api/user', payload)
-    // .then(function (response) {
+    const BASE_URL_DEV = 'http://localhost:3001';
+    const BASE_URL_PROD = 'http://72.140.223.48:3001';
 
-    //   const {token} = response.data;
-    //   const {userId,username, email} = response.data.user[0];
-    //   const payload = {
-    //     token,
-    //     userId,
-    //     username,
-    //     email,
-    //   };
-    //  //dispatch(userActions._signUp(payload));
-      
-    // })
-    // .catch(function (error) {
-    //   console.log(error);
-    // });
+    axios.post(`${BASE_URL_DEV}/api/user`, data)
+    .then(function (response) {
 
-    dispatch(userActions._signUp(payload));
-    props.history.push('/user');
+      console.log(response);
+      const {token} = response.data;
+      const {userId,username, email, avatarUrl} = response.data.user[0];
+      const payload = {
+        token,
+        userId,
+        username,
+        email,
+        avatarUrl,
+      };
+      dispatch(userActions._signUp(payload));
+      props.history.push('/user');
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   }
 
   return (
@@ -68,19 +75,19 @@ export default function SignUpForm(props) {
           <hr className='divider'/>
           <Form.Group className='emailTextfield' controlId="formBasicEmail">
             <Form.Control required className='emailTextfield' type="email" placeholder="Email" {...bindEmail}/>
-            <Form.Text className="text-muted"></Form.Text>
+            <Form.Text className="validationTextSignUp">{validateEmailMessage}</Form.Text>
           </Form.Group>
 
           <Form.Group className='usernameTextfield' controlId="formBasicUsername">
             <Form.Control readOnly='true' required className='usernameTextfield' type="text" placeholder="Username" {...bindEmail}/>
-            <Form.Text className="text-muted"></Form.Text>
+           
           </Form.Group>
 
           <Form.Group className='passwordTextfield' controlId="formBasicPassword">
             <Form.Control required className='passwordTextfield' type="password" placeholder="New Password" {...bindPassword}/>
-            <Form.Text className="text-muted"></Form.Text>
+            <Form.Text className="validationTextSignUp">{validatePasswordMessage}</Form.Text>
           </Form.Group>
-
+          
           <Button className='signUpButton' variant="primary" onClick={()=>signUp()}>Sign Up</Button>
           <hr className='divider' />
           <Button className='loginButton' variant="success" onClick={()=>showDialogue()}>Login</Button>

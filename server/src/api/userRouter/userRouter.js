@@ -61,12 +61,13 @@ users.post("/", (req, res) => {
 
       console.log(`username: ${user[0].username}`);
       // generate a new token for this user
-      const { userId, username, email } = user[0];
+      const { userId, username, email , avatarUrl} = user[0];
 
       const payload = {
-        id,
+        userId,
         username,
-        email
+        email,
+        avatarUrl,
       };
       const token = jwt.sign(payload, process.env.JWT_SECRET, tokenOptions);
 
@@ -98,12 +99,13 @@ users.post("/auth", (req, res) => {
         return res.sendStatus(response.Unauthorized.status);
       };
 
-      const { userId, username, email } = user;
+      const { userId, username, email , avatarUrl} = user;
 
       const payload = {
         userId,
         username,
-        email
+        email,
+        avatarUrl,
       };
 
       const token = jwt.sign(payload, process.env.JWT_SECRET, tokenOptions);

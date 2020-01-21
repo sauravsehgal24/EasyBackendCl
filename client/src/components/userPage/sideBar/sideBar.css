@@ -23,5 +23,12 @@
 
 .button:hover{
     background-color: rgb(241, 78, 78);
+    color:white;
+  animation-name: hoverSideNavButton;
+  animation-duration: 0.6s;
 }
 
+@keyframes hoverSideNavButton {
+    from {background-color: rgba(241, 78, 78,0);}
+    to {background-color: rgba(241, 78, 78,1);}
+  }
