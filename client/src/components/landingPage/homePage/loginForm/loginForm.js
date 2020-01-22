@@ -33,7 +33,7 @@ export default function LoginForm(props) {
   //login api call to auth
   const login = () => {
 
-    if(!validateEmailValue.isValid || !validatePasswordValue.isValid) return;
+   // if(!validateEmailValue.isValid || !validatePasswordValue.isValid) return;
 
     const payload = {
       email,
@@ -43,32 +43,35 @@ export default function LoginForm(props) {
     const BASE_URL_DEV = 'http://localhost:3001';
     const BASE_URL_PROD = 'http://72.140.223.48:3001';
 
-    axios
-      .post(`${BASE_URL_DEV}/api/user/auth`, payload)
-      .then(res => {
-        if (res === "Unauthorized") {
-          console.log("unauthorize");
-          return;
-        }
+    // axios
+    //   .post(`${BASE_URL_DEV}/api/user/auth`, payload)
+    //   .then(res => {
+    //     if (res === "Unauthorized") {
+    //       console.log("unauthorize");
+    //       return;
+    //     }
         
-        const { token } = res.data;
-        const { userId, username, email , avatarUrl} = res.data.user;
-        const payload = {
-          token,
-          userId,
-          username,
-          email,
-          avatarUrl,
-        };
+    //     const { token } = res.data;
+    //     const { userId, username, email , avatarUrl} = res.data.user;
+    //     const payload = {
+    //       token,
+    //       userId,
+    //       username,
+    //       email,
+    //       avatarUrl,
+    //     };
 
-        console.log(payload);
-        dispatch(userActions._signUp(payload));
-        props.history.push('/user');
-      })
+    //     console.log(payload);
+    //     dispatch(userActions._signUp(payload));
+    //     props.history.push('/user');
+    //   })
 
-      .catch(err => {
-        console.log(err);
-      });
+    //   .catch(err => {
+    //     console.log(err);
+    //   });
+
+      dispatch(userActions._signUp(payload));
+      props.history.push('/user');
   };
 
   return (
