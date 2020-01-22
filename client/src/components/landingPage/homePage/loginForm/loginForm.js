@@ -33,7 +33,7 @@ export default function LoginForm(props) {
   //login api call to auth
   const login = () => {
 
-    if(validateEmailValue !== '' || validatePasswordValue !== '') return;
+    if(!validateEmailValue.isValid || !validatePasswordValue.isValid) return;
 
     const payload = {
       email,
@@ -95,7 +95,7 @@ export default function LoginForm(props) {
               {...bindEmail}
             />
           </InputGroup>
-          <span className="validationTextLogin">{validateEmailValue}</span>
+          <span className="validationTextLogin">{validateEmailValue.validationMessage}</span>
 
           <InputGroup className="loginFormPasswordTextfield mt-3">
             <InputGroup.Prepend>
@@ -108,7 +108,7 @@ export default function LoginForm(props) {
               {...bindPassword}
             />
           </InputGroup>
-          <span className="validationTextLogin">{validatePasswordValue}</span>
+          <span className="validationTextLogin">{validatePasswordValue.validationMessage}</span>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="success" onClick={() => login()}>

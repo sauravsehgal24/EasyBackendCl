@@ -9,10 +9,10 @@ export default function HomePage(props) {
     <React.Fragment>
       <Container fluid>
         <Row>
-          <Col xl={6} l={6} md={6} sm={12} xs={12} className='colOne'>
+          <Col xl={7} l={7} md={7} sm={12} xs={12} className='colOne'>
             <DisplayInfo />
           </Col>
-          <Col xl={6} l={6} md={6} sm={12} xs={12} className='colTwo'>
+          <Col xl={5} l={5} md={5} sm={12} xs={12} className='colTwo'>
             <SignUpForm {...props}/>
           </Col>
         </Row>

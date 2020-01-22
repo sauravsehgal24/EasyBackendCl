@@ -5,7 +5,7 @@ import "./developerPage.css";
 export default function DeveloperPage() {
   return (
     <React.Fragment>
-      <Container className="containerDeveloperPage" fluid>
+      <Container xl={12} lg={12} md={12} sm={12} xs={12} className="containerDeveloperPage" fluid>
         <Card className="developerPageCard">
           <Card.Body className="developerPageCardBody">
             <header className="cardTitle">Hey Developers Whats Up!</header>
