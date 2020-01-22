@@ -32,7 +32,7 @@ export default function SignUpForm(props) {
 //signUp api call
   const signUp = ()=>{
 
-    if(validateEmailMessage !== '' || validatePasswordMessage !== '') return;
+    if(!validateEmailMessage.isValid || !validatePasswordMessage.isValid) return;
 
     const data = {
       username: email,
@@ -67,6 +67,7 @@ export default function SignUpForm(props) {
     });
   }
 
+
   return (
     <React.Fragment>
       <Card className='card'>
@@ -75,19 +76,22 @@ export default function SignUpForm(props) {
           <hr className='divider'/>
           <Form.Group className='emailTextfield' controlId="formBasicEmail">
             <Form.Control required className='emailTextfield' type="email" placeholder="Email" {...bindEmail}/>
-            <Form.Text className="validationTextSignUp">{validateEmailMessage}</Form.Text>
+            
           </Form.Group>
-
+          <div className='validationHolder'>
+          <span  className="validationTextSignUp">{validateEmailMessage.validationMessage}</span>
+          </div>
           <Form.Group className='usernameTextfield' controlId="formBasicUsername">
-            <Form.Control readOnly='true' required className='usernameTextfield' type="text" placeholder="Username" {...bindEmail}/>
-           
+            <Form.Control readOnly='true'  className='usernameTextfield' type="text" placeholder="Username" {...bindEmail}/>
           </Form.Group>
 
           <Form.Group className='passwordTextfield' controlId="formBasicPassword">
             <Form.Control required className='passwordTextfield' type="password" placeholder="New Password" {...bindPassword}/>
-            <Form.Text className="validationTextSignUp">{validatePasswordMessage}</Form.Text>
+            
           </Form.Group>
-          
+          <div className='validationHolder'>
+          <span  className="validationTextSignUp">{validatePasswordMessage.validationMessage}</span>
+          </div>
           <Button className='signUpButton' variant="primary" onClick={()=>signUp()}>Sign Up</Button>
           <hr className='divider' />
           <Button className='loginButton' variant="success" onClick={()=>showDialogue()}>Login</Button>

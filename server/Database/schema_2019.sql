@@ -13,11 +13,11 @@ SET FOREIGN_KEY_CHECKS = 1;
 -- **********************************************************
 
 CREATE TABLE users (
- userId varchar(50) NOT NULL, 
- username varchar(50) NOT NULL,
- email varchar(50),
- password varchar(50) NOT NULL, 
- avatarUrl varchar(50) DEFAULT NULL, 
+ userId varchar(100) NOT NULL, 
+ username varchar(100) NOT NULL,
+ email varchar(100),
+ password varchar(100) NOT NULL, 
+ avatarUrl varchar(100) DEFAULT NULL, 
  PRIMARY KEY(`userId`),
  UNIQUE KEY `userId` (`userId`),
  UNIQUE KEY `username` (`username`),
