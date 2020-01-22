@@ -17,7 +17,12 @@ const useStyles = makeStyles(theme => ({
 
 export default function SideBar(props) {
 
+    
+    const [selected, setSelected] = useState('Dashboard');
   
+    const selectedTab = (data) =>{
+        setSelected(data);
+    }
 
     const user = useSelector(state=> state.userInfo);
     console.log(user);
@@ -47,23 +52,23 @@ export default function SideBar(props) {
           userAvatarComponent() 
         }
             <Link to='/user' className='linkSideBar'>
-                <Button variant="light" className='button' size="lg">Dashboard</Button>
+                <Button variant="light" className='button' size="lg" onClick={()=> selectedTab('Dashboard')} style={{backgroundColor: selected == 'Dashboard'?'rgb(241, 78, 78)':'rgba(240, 248, 255,0)' }}>Dashboard</Button>
             </Link>
 
-            <Link to='/user/profile' className='linkSideBar'>
-                <Button variant="light" className='button' size="lg">Profile</Button>
+            <Link to='/user/profile' className='linkSideBar' >
+                <Button variant="light" className='button' size="lg"  onClick={()=> selectedTab('Profile')} style={{backgroundColor: selected == 'Profile'?'rgb(241, 78, 78)':'rgba(240, 248, 255,0)'}}>Profile</Button>
             </Link>
 
-            <Link to='/user/settings' className='linkSideBar'>
-                <Button variant="light" className='button' size="lg">Settings</Button>
+            <Link to='/user/settings' className='linkSideBar'  >
+                <Button variant="light" className='button' size="lg" onClick={()=> selectedTab('Settings')} style={{backgroundColor: selected == 'Settings'?'rgb(241, 78, 78)':'rgba(240, 248, 255,0)'}}>Settings</Button>
             </Link>
 
-            <Link to='/user/help' className='linkSideBar'>
-                <Button variant="light" className='button' size="lg">Help</Button>
+            <Link to='/user/help' className='linkSideBar'  >
+                <Button variant="light" className='button' size="lg" onClick={()=> selectedTab('Help')} style={{backgroundColor: selected == 'Help'?'rgb(241, 78, 78)':'rgba(240, 248, 255,0)'}}>Help</Button>
             </Link>
 
             <Link onClick={()=>logout()} className='linkSideBar'>
-                <Button variant="light" className='button' size="lg" >Logout</Button>
+                <Button variant="light" className='button' size="lg" style={{backgroundColor:'rgba(240, 248, 255,0)'}} >Logout</Button>
             </Link>
 
             
