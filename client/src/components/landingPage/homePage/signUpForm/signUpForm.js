@@ -1,5 +1,5 @@
 import React, { Component, useState } from "react";
-import { Card, Button, Form, InputGroup } from "react-bootstrap";
+import { Card, Button, Form, Spinner } from "react-bootstrap";
 import {useDispatch} from 'react-redux';
 import userActions from '../../../../global/actions/userActions';
 import './signUpForm.css'
@@ -19,6 +19,7 @@ export default function SignUpForm(props) {
   const {value:loginDialogue, setValue:setLoginDialogueOpen} = useCustomState(false);
   const {value:email, setValue:setEmail,validateResult:validateEmailMessage ,bind:bindEmail, reset:resetEmail} = useCustomState('','email');
   const {value:password, setValue:setPassword, validateResult:validatePasswordMessage, bind:bindPassword, reset:resetPassword} = useCustomState('','password');
+  const {value:isSpinnerLoading, setValue:setIsSpinnerLoading} = useCustomState(false);
 
   const hideDialogue = ()=>{
     setLoginDialogueOpen(false);
@@ -31,7 +32,7 @@ export default function SignUpForm(props) {
 
 //signUp api call
   const signUp = ()=>{
-
+    
     if(!validateEmailMessage.isValid || !validatePasswordMessage.isValid) return;
 
     const data = {
@@ -39,16 +40,15 @@ export default function SignUpForm(props) {
       email: email,
       password: password,
     }
-
+     
     resetEmail();
     resetPassword();
 
     const BASE_URL_DEV = 'http://localhost:3001';
     const BASE_URL_PROD = 'http://72.140.223.48:3001';
-
+    setIsSpinnerLoading(true);
     axios.post(`${BASE_URL_DEV}/api/user`, data)
     .then(function (response) {
-
       console.log(response);
       const {token} = response.data;
       const {userId,username, email, avatarUrl} = response.data.user[0];
@@ -59,10 +59,12 @@ export default function SignUpForm(props) {
         email,
         avatarUrl,
       };
+      setIsSpinnerLoading(false);
       dispatch(userActions._signUp(payload));
       props.history.push('/user');
     })
     .catch(function (error) {
+      setIsSpinnerLoading(false);
       console.log(error);
     });
   }
@@ -92,7 +94,25 @@ export default function SignUpForm(props) {
           <div className='validationHolder'>
           <span  className="validationTextSignUp">{validatePasswordMessage.validationMessage}</span>
           </div>
-          <Button className='signUpButton' variant="primary" onClick={()=>signUp()}>Sign Up</Button>
+
+
+          {
+          isSpinnerLoading ?  <Button className='signUpButton' variant="primary" disabled>
+          <Spinner
+            as="span"
+            animation="border"
+            size="md"
+            role="status"
+            aria-hidden="true"
+          />
+          </Button>
+          :
+          <Button className='signUpButton' variant="primary"  onClick={()=>signUp()}>
+          Sign Up
+          </Button>
+        }
+
+         
           <hr className='divider' />
           <Button className='loginButton' variant="success" onClick={()=>showDialogue()}>Login</Button>
         </Card.Body>

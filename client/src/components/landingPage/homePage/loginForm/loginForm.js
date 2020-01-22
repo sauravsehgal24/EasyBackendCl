@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Modal, Button, Form, InputGroup } from "react-bootstrap";
+import { Modal, Button, Form, InputGroup, Spinner } from "react-bootstrap";
 import { useCustomState } from "../../../hooks/customStateHook";
 import { useDispatch } from "react-redux";
 import axios from "axios";
@@ -30,10 +30,14 @@ export default function LoginForm(props) {
     reset: resetPassword
   } = useCustomState("",'password');
 
+  const {value:isSpinnerLoading, setValue:setIsSpinnerLoading} = useCustomState(false);
+
   //login api call to auth
   const login = () => {
 
-   // if(!validateEmailValue.isValid || !validatePasswordValue.isValid) return;
+    
+
+    if(!validateEmailValue.isValid || !validatePasswordValue.isValid) return;
 
     const payload = {
       email,
@@ -42,6 +46,7 @@ export default function LoginForm(props) {
 
     const BASE_URL_DEV = 'http://localhost:3001';
     const BASE_URL_PROD = 'http://72.140.223.48:3001';
+    setIsSpinnerLoading(true);
 
     // axios
     //   .post(`${BASE_URL_DEV}/api/user/auth`, payload)
@@ -60,13 +65,14 @@ export default function LoginForm(props) {
     //       email,
     //       avatarUrl,
     //     };
-
+    //    setIsSpinnerLoading(false);
     //     console.log(payload);
     //     dispatch(userActions._signUp(payload));
     //     props.history.push('/user');
     //   })
 
     //   .catch(err => {
+    //    setIsSpinnerLoading(false);
     //     console.log(err);
     //   });
 
@@ -114,9 +120,24 @@ export default function LoginForm(props) {
           <span className="validationTextLogin">{validatePasswordValue.validationMessage}</span>
         </Modal.Body>
         <Modal.Footer>
+
+          {
+          isSpinnerLoading ?  <Button  variant="success" disabled>
+          <Spinner
+            as="span"
+            animation="border"
+            size="md"
+            role="status"
+            aria-hidden="true"
+          />
+          </Button>
+          :
           <Button variant="success" onClick={() => login()}>
             Login
           </Button>
+        }
+
+          
         </Modal.Footer>
       </Modal>
     </React.Fragment>
