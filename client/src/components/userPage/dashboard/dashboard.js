@@ -8,7 +8,8 @@ export default function LandingPage() {
             <React.Fragment>
                 <Container fluid className='dashboardContainer'>
                 <Card className='dashboardCard'>
-                    <h3>Looks like you don't have any server application setup...</h3>
+                <img className='dashboardCardimage' src={require('../../../assets/images/developer.gif')}/>
+                    <h3>Hmmm, Looks like you don't have any node server setup...</h3>
                    <hr></hr>
                     <Button variant='danger' size="lg" className='buttonCreateApp'> Create Application </Button>
                 </Card>

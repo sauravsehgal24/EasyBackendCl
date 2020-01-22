@@ -4,6 +4,7 @@
     align-items: center;
     justify-content: center;
     height:100%;
+    
 }
 
 .buttonCreateApp{
@@ -18,14 +19,32 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    /* background: url('../../../assets/images/developer.gif');
+    background-repeat: no-repeat; */
+  
+}
+
+.dashboardCardimage{
+    height:35%;
+    width: 35%;
 }
 
 @media only screen and (max-width: 730px) {
  
+    .dashboardCard{
+        width:100%;
+    }
+
 .buttonCreateApp{
     background-color: rgb(233, 61, 61);
     height:20%;
     width:80%;
     border: 0px;
 }
+
+.dashboardCardimage{
+    height:20%;
+    width: 40%;
+}
+
 }
