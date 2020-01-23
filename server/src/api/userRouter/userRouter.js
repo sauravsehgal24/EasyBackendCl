@@ -21,7 +21,9 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
 const response = require("../../config/httpResponses");
-
+const Promise = require('bluebird');
+const getSqlConnection = require('../../config/connectionPool');
+const Query = require('../../queries/userQueries');
 // data objects
 const User = require("../../buisnessLogic/user/userDataAccessObject");
 
@@ -45,21 +47,29 @@ const tokenOptions = {
 
 // Register a user given their username, password
 users.post("/", (req, res) => {
+  
   const {
-    body: { username, email }
+    body: { email }
   } = req;
 
   // Find if a user exists or not
+  return Promise.using(
+    getSqlConnection(),
+    conn=>conn.query(Query.findUserByEmail,[email])
+  )
+  .then((result)=>{
+    console.log(result);
+  if(result) return res.status(response.Conflict.status).json({
+    message: response.Conflict.message,
+  });
   User.createOne(req)
     .then(user => {
-      console.log(`user inside userCreateOne: ${user[0]}`);
       if (!user) {
         return res.status(response.Conflict.status).json({
           message: response.Conflict.message
         });
       }
 
-      console.log(`username: ${user[0].username}`);
       // generate a new token for this user
       const { userId, username, email , avatarUrl} = user[0];
 
@@ -84,6 +94,10 @@ users.post("/", (req, res) => {
         res.sendStatus(response.ServerError.status);
       }
     });
+  })
+  .catch((err)=>{
+    console.log(err);
+});
 });
 
 // Authenticate a user given their username, password
