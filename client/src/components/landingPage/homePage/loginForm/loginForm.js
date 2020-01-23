@@ -17,7 +17,6 @@ export default function LoginForm(props) {
   const {
     value: email,
     setValue: setEmail,
-    validateResult:validateEmailValue,
     bind: bindEmail,
     reset: resetEmail
   } = useCustomState("",'email');
@@ -25,19 +24,20 @@ export default function LoginForm(props) {
   const {
     value: password,
     setValue: setPassword,
-    validateResult:validatePasswordValue,
     bind: bindPassword,
     reset: resetPassword
   } = useCustomState("",'password');
 
   const {value:isSpinnerLoading, setValue:setIsSpinnerLoading} = useCustomState(false);
+  const {
+    value: errorText,
+    setValue: setErrorText,
+  } = useCustomState('');
 
   //login api call to auth
   const login = () => {
 
-    
-
-    if(!validateEmailValue.isValid || !validatePasswordValue.isValid) return;
+    //if(!validateEmailValue.isValid || !validatePasswordValue.isValid) return;
 
     const payload = {
       email,
@@ -48,36 +48,36 @@ export default function LoginForm(props) {
     const BASE_URL_PROD = 'http://72.140.223.48:3001';
     setIsSpinnerLoading(true);
 
-    // axios
-    //   .post(`${BASE_URL_DEV}/api/user/auth`, payload)
-    //   .then(res => {
-    //     if (res === "Unauthorized") {
-    //       console.log("unauthorize");
-    //       return;
-    //     }
+    axios
+      .post(`${BASE_URL_DEV}/api/user/auth`, payload)
+      .then(res => {
+        if (res === "Unauthorized") {
+          console.log("unauthorize");
+          return;
+        }
         
-    //     const { token } = res.data;
-    //     const { userId, username, email , avatarUrl} = res.data.user;
-    //     const payload = {
-    //       token,
-    //       userId,
-    //       username,
-    //       email,
-    //       avatarUrl,
-    //     };
-    //    setIsSpinnerLoading(false);
-    //     console.log(payload);
-    //     dispatch(userActions._signUp(payload));
-    //     props.history.push('/user');
-    //   })
+        const { token } = res.data;
+        const { userId, username, email , avatarUrl} = res.data.user;
+        const payload = {
+          token,
+          userId,
+          username,
+          email,
+          avatarUrl,
+        };
+        props.setErrorText('');
+       setIsSpinnerLoading(false);
+        console.log(payload);
+        dispatch(userActions._signUp(payload));
+        props.history.push('/user');
+      })
 
-    //   .catch(err => {
-    //    setIsSpinnerLoading(false);
-    //     console.log(err);
-    //   });
+      .catch(err => {
+       setIsSpinnerLoading(false);
+       props.setErrorText('Email or username is invalid');
+      });
 
-      dispatch(userActions._signUp(payload));
-      props.history.push('/user');
+   
   };
 
   return (
@@ -104,7 +104,7 @@ export default function LoginForm(props) {
               {...bindEmail}
             />
           </InputGroup>
-          <span className="validationTextLogin">{validateEmailValue.validationMessage}</span>
+    
 
           <InputGroup className="loginFormPasswordTextfield mt-3">
             <InputGroup.Prepend>
@@ -117,10 +117,11 @@ export default function LoginForm(props) {
               {...bindPassword}
             />
           </InputGroup>
-          <span className="validationTextLogin">{validatePasswordValue.validationMessage}</span>
+         
         </Modal.Body>
         <Modal.Footer>
-
+        
+          <p style={{color:'red'}}>{props.errorTextLogin}</p>
           {
           isSpinnerLoading ?  <Button  variant="success" disabled>
           <Spinner
