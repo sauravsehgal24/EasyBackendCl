@@ -24,10 +24,10 @@ export default function UserPage(props) {
           
         <Col xl={10} l={10} md={10} sm={12} xs={12} className='colContent'>
              <Switch>
-                <Route exact path="/user" component={Dashboard}/>
-                <Route exact path="/user/profile" component={ProfilePage}/>
-                <Route exact path="/user/settings" component={SettingsPage}/>
-                <Route exact path="/user/help" component={HelpPage}/>
+                <Route  path="/user/profile" component={ProfilePage}/>
+                <Route  path="/user/settings" component={SettingsPage}/>
+                <Route  path="/user/help" component={HelpPage}/>
+                <Route  path="/user" component={Dashboard}/>
              </Switch>
         </Col>
       </Row>
