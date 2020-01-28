@@ -1,18 +1,21 @@
 import React, {Component} from 'react';
 import { Route, Link, BrowserRouter as Router, Switch } from 'react-router-dom';
 import {Container, Row, Button,Card} from 'react-bootstrap';
+
+//Components
+import GetStartedPage from './getStartedPage/getStarted';
+import CreateAppPage from './createAppPage/createApp';
+
 import './dashboard.css';
-export default function LandingPage() {
+export default function Dashboard() {
 
         return (
             <React.Fragment>
                 <Container fluid className='dashboardContainer'>
-                <Card className='dashboardCard'>
-                <img className='dashboardCardimage' src={require('../../../assets/images/developer.gif')}/>
-                    <h3>Hmmm, Looks like you don't have any node server setup...</h3>
-                   <hr></hr>
-                    <Button variant='danger' size="lg" className='buttonCreateApp'> Create Application </Button>
-                </Card>
+                <Switch>
+                    <Route exact path='/user' component={GetStartedPage}/>
+                    <Route exact path='/user/createnewapp' component={CreateAppPage}/>  
+                </Switch>
                 </Container>
             </React.Fragment>
         );

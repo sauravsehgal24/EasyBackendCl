@@ -1,0 +1,6 @@
+.entityBoxCard{
+    width: 20%;
+    height: 40%;
+    overflow-y:hidden;
+    cursor: move;
+}

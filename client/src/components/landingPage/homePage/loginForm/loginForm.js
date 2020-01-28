@@ -29,21 +29,15 @@ export default function LoginForm(props) {
   } = useCustomState("",'password');
 
   const {value:isSpinnerLoading, setValue:setIsSpinnerLoading} = useCustomState(false);
-  const {
-    value: errorText,
-    setValue: setErrorText,
-  } = useCustomState('');
+useCustomState('');
 
   //login api call to auth
   const login = () => {
-
-    //if(!validateEmailValue.isValid || !validatePasswordValue.isValid) return;
 
     const payload = {
       email,
       password
     };
-
     const BASE_URL_DEV = 'http://localhost:3001';
     const BASE_URL_PROD = 'http://72.140.223.48:3001';
     setIsSpinnerLoading(true);
@@ -76,7 +70,7 @@ export default function LoginForm(props) {
        setIsSpinnerLoading(false);
        props.setErrorText('Email or username is invalid');
       });
-
+      
    
   };
 
