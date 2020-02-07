@@ -10,14 +10,15 @@
 }
 
 .createAppCardRow2{
+    display: flex;
     padding:2%;
-    min-height:30%;
+    min-height:40%;
     overflow-y:hidden;
     overflow-x:scroll;
 }
-.createAppCardRow2::-webkit-scrollbar{
+/* .createAppCardRow2::-webkit-scrollbar{
     display: none;
-}
+} */
 
 /* .createAppCardRow2::-webkit-scrollbar-track {
     -webkit-box-shadow: none;
@@ -41,4 +42,8 @@
     transition-duration: 0.3s;
     transform: rotate(70deg);
     cursor: pointer;
+}
+
+.draggableDiv{
+    
 }

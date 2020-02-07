@@ -2,6 +2,7 @@ import React, {Component, useState} from 'react';
 import { Route, Link, BrowserRouter as Router, Switch } from 'react-router-dom';
 import {Container, Row, Button, Card, Form,InputGroup, FormControl} from 'react-bootstrap';
 
+
 import './entityBox.css';
 export default function EntityBox() {
 
@@ -35,11 +36,14 @@ export default function EntityBox() {
         return array
     }
   
-    
+    const eventLogger = (e, data) => {
+        console.log('Event: ', e);
+        console.log('Data: ', data);
+      };
 
 
         return (
-            <React.Fragment>
+          
                    <Card className='entityBoxCard'>
                     <Card.Body>
                         <Card.Title>
@@ -76,7 +80,7 @@ export default function EntityBox() {
                         <Button onClick={()=>addInput()} variant="primary" style={{width:'100%'}}>Add Column</Button>
                     </Card.Body>
                     </Card>
-            </React.Fragment>
+                    
         );
         
 }
