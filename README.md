@@ -1,7 +1,7 @@
 # EasyBackendCl
 
 ## About
-EasyBackendCl is a Paas. With the help of this service a user can create a NodeJS production server alongside a remote production database and can make API calls directly to this production server.
+EasyBackendCl is Platform as a Service (PaaS). With the help of this service a user can create a NodeJS production server alongside a remote production database and can make API calls directly to this production server.
 
 ## Usage 
 #### (Note: Some of the features still needs to be developed, so please be patient)
