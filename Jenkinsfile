@@ -6,8 +6,9 @@ pipeline {
             steps {
                 echo "Building"
                 dir('client'){
+                   sh "ls"
                    sh "npm install"
-                   sh "npm build"
+                   sh "npm run build"
                 }
                 echo "Done Building"
             }
