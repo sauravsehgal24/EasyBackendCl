@@ -4,7 +4,11 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo "Build Successful"
+                echo "Building"
+                cd client
+                npm install
+                npm build
+                echo "Done Building"
             }
         }
     }
