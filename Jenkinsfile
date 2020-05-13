@@ -5,9 +5,10 @@ pipeline {
         stage('Build') {
             steps {
                 echo "Building"
-                cd client
-                npm install
-                npm build
+                dir('client'){
+                   sh "npm install"
+                   sh "npm build"
+                }
                 echo "Done Building"
             }
         }
