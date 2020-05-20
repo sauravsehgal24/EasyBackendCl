@@ -8,7 +8,6 @@ const cors = require('cors');
 const path = require('path');
 var SqlGenerator = require('./src/buisnessLogic/codeFileGenerator/sql/sqlCmdGenerator');
 
-
 //initialization
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());

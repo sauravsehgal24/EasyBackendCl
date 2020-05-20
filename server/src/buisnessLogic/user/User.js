@@ -14,7 +14,6 @@ class User {
   static createOne(req) {
     console.log('inside create one ');
     const {username, email, password} = req.body;
-    console.log(`password: ${password}`);
     const values = [
         username,
         email,
@@ -22,7 +21,6 @@ class User {
 
       return bcrypt.hash(password, 10)
       .then((hash) => {
-        console.log(`hash: ${hash}`);
         values.push(hash);
 
         // Promise which resolves to a query
