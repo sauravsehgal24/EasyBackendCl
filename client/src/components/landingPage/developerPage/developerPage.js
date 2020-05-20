@@ -16,11 +16,8 @@ export default function DeveloperPage() {
             />
             <div className="developersCardPara">
               My name is <strong>Saurav Sehgal</strong> and I am a Full-Stack
-              Developer like most of you out there. I am a recent graduate from
-              Sheridan College (Brampton, ON, CA) and this is my first open
-              source and big project after my studies. After some research and
-              going through the documentation for react, I came up with this
-              project. Currently developing some of the major features and being
+              Developer and Cloud Engineer. I felt a need to develop my very own server-less cloud infrastructure where 
+              users can deploy their web apps. Currently developing some of the major features and being
               an open source project, you can also contribute via my Github link
               provided down below.
             </div>
