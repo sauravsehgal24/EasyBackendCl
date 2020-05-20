@@ -67,11 +67,14 @@ export default function SideBar(props) {
                 <Button variant="light" className='button' size="lg" onClick={()=> selectedTab('Help')} style={{backgroundColor: selected == 'Help'?'rgb(241, 78, 78)':'rgba(240, 248, 255,0)'}}>Help</Button>
             </Link>
 
+            <Link to='/user/docs' className='linkSideBar'  >
+                <Button variant="light" className='button' size="lg" onClick={()=> selectedTab('Docs')} style={{backgroundColor: selected == 'Docs'?'rgb(241, 78, 78)':'rgba(240, 248, 255,0)'}}>Docs</Button>
+            </Link>
+
             <Link onClick={()=>logout()} className='linkSideBar'>
                 <Button variant="light" className='button' size="lg" style={{backgroundColor:'rgba(240, 248, 255,0)'}} >Logout</Button>
             </Link>
 
-            
         </Container>
     </React.Fragment>
   )

@@ -68,7 +68,7 @@ useCustomState('');
 
       .catch(err => {
        setIsSpinnerLoading(false);
-       props.setErrorText('Email or username is invalid');
+       props.setErrorText('Email/Username or Password is invalid');
       });
       
    
