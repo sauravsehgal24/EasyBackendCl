@@ -6,6 +6,7 @@ import SideBar from '../userPage/sideBar/sideBar';
 import ProfilePage from './profilePage/profilePage';
 import SettingsPage from './settingsPage/settingsPage';
 import HelpPage from './helpPage/helpPage';
+import DocsPage from './docsPage/docsPage';
 import Dashboard from './dashboard/dashboard';
 import { Route, Link, BrowserRouter as Router, Switch } from 'react-router-dom';
 import './userPage.css';
@@ -27,6 +28,7 @@ export default function UserPage(props) {
                 <Route  path="/user/profile" component={ProfilePage}/>
                 <Route  path="/user/settings" component={SettingsPage}/>
                 <Route  path="/user/help" component={HelpPage}/>
+                <Route  path="/user/docs" component={DocsPage}/>
                 <Route  path="/user" component={Dashboard}/>
              </Switch>
         </Col>

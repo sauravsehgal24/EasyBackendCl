@@ -59,12 +59,13 @@ users.post("/", (req, res) => {
   )
   .then((result)=>{
     console.log(result);
-  if(result) return res.status(response.Conflict.status).json({
+  if(result.length != 0) return res.status(response.Conflict.status).json({
     message: response.Conflict.message,
   });
   User.createOne(req)
     .then(user => {
       if (!user) {
+        console.log(user)
         return res.status(response.Conflict.status).json({
           message: response.Conflict.message
         });
