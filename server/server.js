@@ -8,7 +8,6 @@ const cors = require('cors');
 const path = require('path');
 var SqlGenerator = require('./src/buisnessLogic/codeFileGenerator/sql/sqlCmdGenerator');
 
-
 //initialization
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -22,7 +21,7 @@ app.use(`/api`, api);
 const uploadsServe = express.static(path.resolve(__dirname, 'uploads'));
 app.use('/uploads', uploadsServe);
 
-app.get('/', (req, res) => res.send(`EasyBackendCl says hi! on port: ${port}`))
+app.use('/', express.static(path.resolve(__dirname, '../client/build')))
 app.listen(port, () => console.log(`EasyBackendCl Server listening on port ${port}!`))
 
 //just testing if the sql template is generated -> it works

@@ -66,7 +66,7 @@ export default function SignUpForm(props) {
     resetPassword();
 
     const BASE_URL_DEV = "http://localhost:3001";
-    const BASE_URL_PROD = "http://72.140.223.48:3001";
+    const BASE_URL_PROD = "http://serverlatest.easybackendcl.ga";
     setIsSpinnerLoading(true);
     axios
       .post(`${BASE_URL_DEV}/api/user`, data)
@@ -93,8 +93,6 @@ export default function SignUpForm(props) {
 
   return (
     <React.Fragment>
-    
-
       <Card className="card">
         <Card.Body className="cardBody">
           <header className="cardTitle">Join The Community</header>

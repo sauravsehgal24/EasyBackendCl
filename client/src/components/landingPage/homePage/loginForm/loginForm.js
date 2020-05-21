@@ -39,7 +39,7 @@ useCustomState('');
       password
     };
     const BASE_URL_DEV = 'http://localhost:3001';
-    const BASE_URL_PROD = 'http://72.140.223.48:3001';
+    const BASE_URL_PROD = 'http://serverlatest.easybackendcl.ga';
     setIsSpinnerLoading(true);
 
     axios
@@ -68,7 +68,7 @@ useCustomState('');
 
       .catch(err => {
        setIsSpinnerLoading(false);
-       props.setErrorText('Email or username is invalid');
+       props.setErrorText('Email/Username or Password is invalid');
       });
       
    
