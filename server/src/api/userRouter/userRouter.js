@@ -136,4 +136,22 @@ users.post("/auth", (req, res) => {
     });
 });
 
+// Add application for a user 
+users.post("/createApp", (req, res) => {
+  const {
+    body: { user,password,database,tables }
+  } = req;
+
+  console.log(`USER: ${user}     PASSWORD: ${password}    DATABASE: ${database}`)
+  console.log(`TABLES:\n`)
+  tables.map((table,index)=>{
+    console.log(table)
+  })
+
+  return res.status(response.OK.status).json({
+    message: response.OK.message,
+  });
+  
+});
+
 module.exports = users;

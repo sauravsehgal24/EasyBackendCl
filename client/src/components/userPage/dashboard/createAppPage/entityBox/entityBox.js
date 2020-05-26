@@ -17,28 +17,27 @@ export default function EntityBox(props) {
   });
 
   const addInput = () => {
-    setState({ inputFields: [...state.inputFields, "asd"] });
+    //setState({ inputFields: [...state.inputFields, ""] });
+    props.addInputField(props.index)
   };
 
   const removeInput = index => {
-    var array = state.inputFields;
-    array.splice(index, 1);
-    setState({ inputFields: [...array] });
-    console.log(`index removed= ${index}   new state = ${state.inputFields}`);
+    props.removeInputField(props.index,index)
+    console.log(`index removed= ${index}   new state = ${props.inputFields}`);
   };
 
   const showState = () => {
     console.log(state.inputFields);
   };
 
-  const handleChange = (e, index) => {
-    const newState = getNewState(e, state.inputFields, index);
-    setState({ inputFields: [...newState] });
+  const handleChange = (e, indexField) => {
+    //const newState = getNewState(e, state.inputFields, indexField);
+    props.changeInputFieldValue(e.target.value,indexField,props.index)
+    //setState({ inputFields: [...newState] });
   };
 
-  const getNewState = (e, array, index) => {
-    array[index] = e.target.value;
-    return array;
+  const changeEntityNameFieldValue = (e,index) => {
+    props.changeEntityNameFieldValue(e.target.value,index)
   };
 
   const eventLogger = (e, data) => {
@@ -56,6 +55,8 @@ export default function EntityBox(props) {
               className="entityName"
               type="text"
               placeholder="Table Name"
+              value={props.entity.entityName}
+              onChange={(e)=>{changeEntityNameFieldValue(e,props.index)}}
             />
             <InputGroup.Append>
             <Button
@@ -69,7 +70,7 @@ export default function EntityBox(props) {
         </Card.Title>
         <hr />
 
-        {state.inputFields.map((field, index) => {
+        {props.inputFields.map((field, index) => {
           return (
             <React.Fragment>
               <InputGroup className="mb-3">
