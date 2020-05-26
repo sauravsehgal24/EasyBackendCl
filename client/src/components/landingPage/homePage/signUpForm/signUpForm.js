@@ -7,6 +7,7 @@ import LoginForm from "../loginForm/loginForm";
 import customState, { useCustomState } from "../../../hooks/customStateHook";
 import axios from "axios";
 import { useEffect } from "react";
+require('dotenv').config();
 
 export default function SignUpForm(props) {
   //dispatch
@@ -69,7 +70,7 @@ export default function SignUpForm(props) {
     const BASE_URL_PROD = "http://serverlatest.easybackendcl.ga";
     setIsSpinnerLoading(true);
     axios
-      .post(`${BASE_URL_DEV}/api/user`, data)
+      .post(`${process.env.REACT_APP_API}/api/user`, data)
       .then(function(response) {
         console.log(response);
         const { token } = response.data;

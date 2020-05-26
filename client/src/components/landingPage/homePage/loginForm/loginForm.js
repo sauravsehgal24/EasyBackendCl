@@ -6,6 +6,7 @@ import axios from "axios";
 import userActions from "../../../../global/actions/userActions";
 import './loginForm.css';
 import { Route, Link, BrowserRouter as Router, Switch } from "react-router-dom";
+require('dotenv').config();
 
 export default function LoginForm(props) {
 
@@ -38,12 +39,10 @@ useCustomState('');
       email,
       password
     };
-    const BASE_URL_DEV = 'http://localhost:3001';
-    const BASE_URL_PROD = 'http://serverlatest.easybackendcl.ga';
     setIsSpinnerLoading(true);
 
     axios
-      .post(`${BASE_URL_DEV}/api/user/auth`, payload)
+      .post(`${process.env.REACT_APP_API}/api/user/auth`, payload)
       .then(res => {
         if (res === "Unauthorized") {
           console.log("unauthorize");
