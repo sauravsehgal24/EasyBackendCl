@@ -25,7 +25,7 @@ class SqlGenerator {
                 return this.createTableSqlCommand(index,tableName,fieldsArray,outputTest);
             }
             else{
-                outputTest+=` ${fieldsArray[index].fieldName} ${fieldsArray[index].fieldType} ${fieldsArray[index].constraint ? fieldsArray[index].constraint:''}${index==fieldsArray.length-1 ? '':','}`;
+                outputTest+=`${fieldsArray[index]} ${fieldsArray[index].fieldType ? fieldsArray[index].fieldType : 'varchar(20)'} ${fieldsArray[index].constraint ? fieldsArray[index].constraint:''}${index==fieldsArray.length-1 ? '':','}`;
                 index++;
                 
                 return this.createTableSqlCommand(index,tableName,fieldsArray,outputTest);
@@ -38,18 +38,13 @@ class SqlGenerator {
     }
 
     static generateSqlFileTemplate(creds,metadata){
-
-
         let credsOutput =  this.createWholeSqlCredsAndDb(creds);
         var tablesOutput=``;
         metadata.forEach(e=>{
-            tablesOutput += `${this.createTableSqlCommand(0,e.tableName,e.tableFields,null)} ${e.externalConstraint ? ', '+e.externalConstraint+');' : ');'} \n\n`;
+            tablesOutput += `${this.createTableSqlCommand(0,e.entityName,e.inputFields,null)} ${e.externalConstraint ? ', '+e.externalConstraint+');' : ');'} \n\n`;
         });
-
         return `${credsOutput} \n${tablesOutput}`
-
     }
-
 }
 
 module.exports = SqlGenerator;

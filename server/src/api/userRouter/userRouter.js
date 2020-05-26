@@ -24,6 +24,8 @@ const response = require("../../config/httpResponses");
 const Promise = require('bluebird');
 const getSqlConnection = require('../../config/connectionPool');
 const Query = require('../../queries/userQueries');
+var SqlGenerator = require('../../buisnessLogic/codeFileGenerator/sql/sqlCmdGenerator');
+
 // data objects
 const User = require("../../buisnessLogic/user/userDataAccessObject");
 
@@ -147,6 +149,9 @@ users.post("/createApp", (req, res) => {
   tables.map((table,index)=>{
     console.log(table)
   })
+
+  let sqlFileTemplate = SqlGenerator.generateSqlFileTemplate({dbUser:user,dbPassword:password,dbName:database},tables)
+  console.log(sqlFileTemplate)
 
   return res.status(response.OK.status).json({
     message: response.OK.message,
