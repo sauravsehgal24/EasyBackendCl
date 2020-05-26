@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Route, Link, BrowserRouter as Router, Switch } from "react-router-dom";
 import { Container, Row, Col, Button, Card, Grid } from "react-bootstrap";
 import Draggable, { DraggableCore } from "react-draggable";
-
+import axios from 'axios';
 import "./createApp.css";
 
 //Components
@@ -20,6 +20,25 @@ export default function CreateAppPage() {
     ]
   });
 
+  const deployApplication = ()=>{
+    const user = "s@g.c"
+    const password = "saurav"
+    const database = "testss"
+    const tables = state.entityBoxes
+    const payload = {
+      user,
+      password,
+      database,
+      tables
+    }
+
+    axios.post('http://localhost:3001/api/user/createApp',payload)
+    .then((res)=>{
+      console.log(res)
+    })
+
+  }
+
   const addNewEntityBox = () => {
     if (state.entityBoxes.length === 5) {
       alert("You are not permitted to add more than 5 Entities");
@@ -28,10 +47,11 @@ export default function CreateAppPage() {
     setState({
       entityBoxes: [
         ...state.entityBoxes,
-        { entityName: "", entityId: "", inputFields: "" }
+        { entityName: "", entityId: "", inputFields: [] }
       ]
     });
   };
+
   const removeEntityBox = index => {
     var array = state.entityBoxes;
     array.splice(index, 1);
@@ -40,9 +60,29 @@ export default function CreateAppPage() {
       `e box index removed= ${index}   new state = ${state.entityBoxes}`
     );
   };
-  const addInputField = (index,field)=>{
-      
+
+  const addInputField = (index)=>{
+    var array = state.entityBoxes
+    array[index].inputFields.push("")
+    setState({entityBoxes:[...array]})
   }
+  const removeInputField = (entityIndex,inputIndex)=>{
+    var array = state.entityBoxes
+    array[entityIndex].inputFields.splice(inputIndex, 1);
+    setState({entityBoxes:[...array]})
+  }
+
+  const changeInputFieldValue = (newValue,inputIndex,entityIndex)=>{
+    var array = state.entityBoxes
+    array[entityIndex].inputFields[inputIndex] = newValue
+    setState({entityBoxes:[...array]})
+  }
+  const changeEntityNameFieldValue = (newValue,entityIndex)=>{
+    var array = state.entityBoxes
+    array[entityIndex].entityName = newValue
+    setState({entityBoxes:[...array]})
+  }
+
 
   return (
     <React.Fragment>
@@ -69,10 +109,14 @@ export default function CreateAppPage() {
                 >
                   <div className="draggableDiv">
                     <EntityBox
-                      
+                    changeInputFieldValue={changeInputFieldValue}
+                      removeInputField={removeInputField}
                       entity={entity}
                       removeEntity={removeEntityBox}
+                      addInputField={addInputField}
                       index={index}
+                      inputFields={entity.inputFields}
+                      changeEntityNameFieldValue={changeEntityNameFieldValue}
                     />
                   </div>
                 </Draggable>
@@ -80,7 +124,9 @@ export default function CreateAppPage() {
             })}
           </Row>
         </Container>
+          
       </Card>
+      <Button onClick={()=>{deployApplication()}} style={{width:'30%',margin:'2%'}}variant="danger">Deploy</Button>
     </React.Fragment>
   );
 }
