@@ -57,6 +57,7 @@ export default function EntityBox(props) {
               placeholder="Table Name"
               value={props.entity.entityName}
               onChange={(e)=>{changeEntityNameFieldValue(e,props.index)}}
+              onMouseDown={e => e.stopPropagation()}
             />
             <InputGroup.Append>
             <Button
@@ -78,6 +79,7 @@ export default function EntityBox(props) {
                   placeholder="Field Name"
                   onChange={e => handleChange(e, index)}
                   value={field}
+                  onMouseDown={e => e.stopPropagation()}
                 />
                 <InputGroup.Append>
                   <Button onClick={() => removeInput(index)} variant="danger">

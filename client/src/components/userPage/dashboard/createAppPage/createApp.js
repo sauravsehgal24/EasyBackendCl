@@ -3,13 +3,15 @@ import { Route, Link, BrowserRouter as Router, Switch } from "react-router-dom";
 import { Container, Row, Col, Button, Card, Grid } from "react-bootstrap";
 import Draggable, { DraggableCore } from "react-draggable";
 import axios from 'axios';
+import {useSelector} from 'react-redux';
 import "./createApp.css";
+import dotenv from 'dotenv';
 
 //Components
 import EntityBox from "./entityBox/entityBox";
-import { useEffect } from "react";
 
 export default function CreateAppPage() {
+  dotenv.config();
   const [state, setState] = useState({
     entityBoxes: [
       {
@@ -20,11 +22,14 @@ export default function CreateAppPage() {
     ]
   });
 
+  const userGlobal = useSelector(state=> state.userInfo);
+
   const deployApplication = ()=>{
-    const user = "s@g.c"
+    const user = userGlobal.user.username
     const password = "saurav"
     const database = "testss"
     const tables = state.entityBoxes
+
     const payload = {
       user,
       password,
@@ -32,7 +37,7 @@ export default function CreateAppPage() {
       tables
     }
 
-    axios.post('http://localhost:3001/api/user/createApp',payload)
+    axios.post(`${process.env.REACT_APP_API}/api/user/createApp`,payload)
     .then((res)=>{
       console.log(res)
     })
@@ -103,8 +108,6 @@ export default function CreateAppPage() {
                 <Draggable
                   grid={[25, 25]}
                   scale={1}
-                  onStart={() => console.log("dragging start")}
-                  onDrag={() => console.log("dragging")}
                   key={index}
                 >
                   <div className="draggableDiv">
@@ -126,7 +129,7 @@ export default function CreateAppPage() {
         </Container>
           
       </Card>
-      <Button onClick={()=>{deployApplication()}} style={{width:'30%',margin:'2%'}}variant="danger">Deploy</Button>
+      <Button onClick={()=>{deployApplication()}} style={{width:'20%',height:'5%',margin:'2%'}}variant="danger">Deploy</Button>
     </React.Fragment>
   );
 }
